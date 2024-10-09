@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+    <link rel="stylesheet" href="Style.css">
+    <script>
+        function mostrarFormulario(formulario) {
+            document.getElementById('formLogin').style.display = 'none';
+            document.getElementById('formRegistro').style.display = 'none';
+            document.getElementById('formEmpleado').style.display = 'none';
+
+            document.getElementById(formulario).style.display = 'block';
+        }
+    </script>
+</head>
+<body class="BodyLogin">
+    <div class="formulario">
+
+        <!-- Formulario de Inicio de Sesión -->
+        <div id="formLogin" style="display: block;">
+            <h1>Inicio de sesión</h1>
+            <form method="post">
+                <div class="registroInfo">
+                    <input type="text" required>
+                    <label>Nombre de usuario</label>
+                </div>
+                <div class="registroInfo">
+                    <input type="password" required>
+                    <label>Contraseña</label>
+                </div>
+                <div class="recordar">¿Olvidó su contraseña?</div>
+                <input type="submit" value="Iniciar">
+                <div class="registrarse">
+                    ¿No tienes cuenta? <a href="#" onclick="mostrarFormulario('formRegistro')">Regístrate aquí</a>
+                </div>
+                <div class="registrarse">
+                    ¿Eres empleado? <a href="#" onclick="mostrarFormulario('formEmpleado')">Regístrate como empleado</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Formulario de Registro de Usuarios -->
+        <div id="formRegistro" style="display: none;">
+            <h1>Registro de Usuarios</h1>
+            <form method="post">
+                <div class="registroInfo">
+                    <input type="text" required>
+                    <label>Nombre de usuario</label>
+                </div>
+                <div class="registroInfo">
+                    <input type="email" required>
+                    <label>Correo electrónico</label>
+                </div>
+                <div class="registroInfo">
+                    <input type="number" required inputmode="tel">
+                    <label>Número de teléfono</label>
+                </div>
+                <div class="registroInfo">
+                    <input type="text" required>
+                    <label>Domicilio</label>
+                </div>
+                <div class="registroInfo">
+                    <input type="password" required>
+                    <label>Contraseña</label>
+                </div>
+                <div class="registroInfo">
+                    <input type="password" required>
+                    <label>Confirmar contraseña</label>
+                </div>
+                <input type="submit" value="Registrarse">
+                <div class="iniciarSesion">
+                    ¿Ya tienes cuenta? <a href="#" onclick="mostrarFormulario('formLogin')">Inicia sesión aquí</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Formulario de Registro de Empleados -->
+        <div id="formEmpleado" style="display: none;">
+            <h1>Registro de Empleados</h1>
+            <form method="post">
+                <div class="registroInfo">
+                    <input type="text" required>
+                    <label>Nombre completo</label>
+                </div>
+                <div class="registroInfo">
+                    <input type="email" required>
+                    <label>Correo electrónico corporativo</label>
+                </div>
+                <div class="registroInfo">
+                    <input type="number" required inputmode="tel">
+                    <label>Número de teléfono</label>
+                </div>
+                <div class="registroInfo">
+                    <input type="text" required>
+                    <label>Puesto de trabajo</label>
+                </div>
+                <div class="registroInfo">
+                    <input type="password" required>
+                    <label>Contraseña</label>
+                </div>
+                <div class="registroInfo">
+                    <input type="password" required>
+                    <label>Confirmar contraseña</label>
+                </div>
+                <input type="submit" value="Registrarse como empleado">
+                <div class="iniciarSesion">
+                    ¿Ya eres empleado? <a href="#" onclick="mostrarFormulario('formLogin')">Inicia sesión aquí</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
