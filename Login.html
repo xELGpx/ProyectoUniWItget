@@ -13,6 +13,18 @@
 
             document.getElementById(formulario).style.display = 'block';
         }
+
+        // Capturar el evento de envío del formulario de inicio de sesión
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Evitar el envío del formulario
+
+                // Aquí podrías agregar validación adicional si es necesario
+                
+                // Redirigir a otra página después de "iniciar sesión"
+                window.location.href = 'dashboard.html'; // Cambia 'dashboard.html' por la página de destino
+            });
+        });
     </script>
 </head>
 <body class="BodyLogin">
@@ -21,13 +33,13 @@
         <!-- Formulario de Inicio de Sesión -->
         <div id="formLogin" style="display: block;">
             <h1>Inicio de sesión</h1>
-            <form method="post">
+            <form id="loginForm">
                 <div class="registroInfo">
-                    <input type="text" required>
+                    <input type="text" id="username" required>
                     <label>Nombre de usuario</label>
                 </div>
                 <div class="registroInfo">
-                    <input type="password" required>
+                    <input type="password" id="password" required>
                     <label>Contraseña</label>
                 </div>
                 <div class="recordar">¿Olvidó su contraseña?</div>
