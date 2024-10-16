@@ -76,3 +76,15 @@ loadMoreBtn3.onclick = ()  => {
         loadMoreBtn3.style.display = 'none'
     }
 }
+//tucan abajo es el boton :)                   joto
+
+document.getElementById('mostrarPerfil').onclick = function() {
+    var perfil = document.getElementById('perfilUsuario');
+    if (perfil.style.display === 'none' || perfil.style.display === '') {
+        perfil.style.display = 'block';
+        this.textContent = 'Ocultar Perfil';
+    } else {
+        perfil.style.display = 'none';
+        this.textContent = 'Mostrar Perfil';
+    }
+}

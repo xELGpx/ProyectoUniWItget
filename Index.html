@@ -24,9 +24,51 @@
                     <li><a href="login.html">Log in</a></li>
                 </ul>
             </nav>
-        </div> <!-- Aquí cierra el div de la clase menu -->
+        </div>
+        <!-- Tucan gay este es el boton temporal para mostrar UWU -->
+        <button id="mostrarPerfil" class="perfil-Buton">Mostrar Perfil</button>
 
-        <!-- Ahora el contenedor del header -->
+        <div class="userPerfil" id="perfilUsuario">
+            <div class="container">
+                <img src="/images/hoja - Copy.png" alt="user" class="user">
+                <p>Nombre de Usuario</p>
+        
+                <input type="password" id="correo" value="correo@ejemplo.com" readonly>
+                <input type="checkbox" onclick="mostrarOcultar('correo')"> Mostrar correo
+                <input type="password" id="contrasena" value="contraseñaEjemplo" readonly>
+                <input type="checkbox" onclick="mostrarOcultar('contrasena')"> Mostrar contraseña
+        
+                <p>Numero de telefono</p>
+        
+                <div class="UsuarioLevel">
+                    <p>Cliente | Asociado</p>
+                    <div class="EmpleadoLevel">
+                        <p>Puesto1</p>
+                        <p>Puesto2</p>
+                        <p>Puesto3</p>
+                        <p>Puesto4</p>
+                        <p>Puesto5</p>
+                        <p>Puesto6</p>
+                    </div>
+                </div>
+        
+                <div class="butonInPerfil">
+                    <button class="perfil-Buton">Cerrar sesión</button>
+                    <button class="perfil-Buton1">Solicitar Empleo</button>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            function mostrarOcultar(id) {
+                var input = document.getElementById(id);
+                if (input.type === "password") {
+                    input.type = "text";
+                } else {
+                    input.type = "password";
+                }
+            }
+        </script>
         <div class="header-content container">
             <div class="header-txt">
                 <h1>Hamburguesas</h1>
