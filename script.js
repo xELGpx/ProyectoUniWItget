@@ -88,3 +88,28 @@ document.getElementById('mostrarPerfil').onclick = function() {
         this.textContent = 'Mostrar Perfil';
     }
 }
+
+document.querySelectorAll('.buy').forEach(item => {
+    item.addEventListener('click', (event) => {
+        // Muestra el menú de compra
+        document.getElementById('purchaseMenu').style.display = 'block';
+        
+        // Obtiene la información del producto (puedes personalizar esto según tu estructura)
+        const productCard = item.closest('.box-1');
+        const productName = productCard.querySelector('h3').innerText;
+        const productPrice = productCard.querySelector('.price').innerText;
+        
+        // Muestra información del producto en el menú de compra (opcional)
+        alert(`Has seleccionado: ${productName}\nPrecio: ${productPrice}`);
+    });
+});
+
+// Lógica para confirmar la compra (opcional)
+document.getElementById('confirmPurchase').addEventListener('click', () => {
+    const paymentMethod = document.getElementById('paymentMethod').value;
+    const quantity = document.getElementById('quantity').value;
+    
+    alert(`Compra confirmada!\nMétodo de Pago: ${paymentMethod}\nCantidad: ${quantity}`);
+    
+    // Aquí puedes añadir lógica para procesar el pago o guardar la compra
+});
