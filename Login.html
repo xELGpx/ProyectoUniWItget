@@ -5,28 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formularios</title>
     <link rel="stylesheet" href="Style.css">
-    <script src="./scripts/fromHandle.js"></script>
-    <script>
-        function mostrarFormulario(formulario) {
-            document.getElementById('formLogin').style.display = 'none';
-            document.getElementById('formRegistro').style.display = 'none';
-            document.getElementById('formEmpleado').style.display = 'none';
-
-            document.getElementById(formulario).style.display = 'block';
-        }
-
-        // Capturar el evento de envío del formulario de inicio de sesión
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('loginForm').addEventListener('submit', function(event) {
-                event.preventDefault(); // Evitar el envío del formulario
-
-                // Aquí podrías agregar validación adicional si es necesario
-                
-                // Redirigir a otra página después de "iniciar sesión"
-                window.location.href = 'dashboard.html'; // Cambia 'dashboard.html' por la página de destino
-            });
-        });
-    </script>
 </head>
 <body class="BodyLogin">
     <div class="formulario">
@@ -127,5 +105,6 @@
             </form>
         </div>
     </div>
+     <script type="module" src="./scripts/fromHandle.js" defer></script>
 </body>
 </html>
