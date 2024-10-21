@@ -69,43 +69,70 @@
         </div>
 
         <!-- Formulario de Registro de Empleados -->
-        <div id="formEmpleado" style="display: none;">
-            <h1>Registro de Empleados</h1>
-            <form method="post">
-                <div class="registroInfo">
-                    <input type="text" name="nombreCompleto" required>
-                    <label>Nombre completo</label>
-                </div>
-                <button type="button" id="generateEmailButton">Generar Correo</button>
-<p id="generatedEmail"></p>
-                <div class="registroInfo">
-                    <input type="email" name="correoElectronico" required>
-                    <label>Correo electrónico corporativo</label>
-                </div>
-                <div class="registroInfo">
-                    <input type="number" name="numeroTelefono" required inputmode="tel">
-                    <label>Número de teléfono</label>
-                </div>
-                <div class="registroInfo">
-                    <input type="text" name="puestoTrabajo" required>
-                    <label>Puesto de trabajo</label>
-                </div>
-                <div class="registroInfo">
-                    <input type="password" name="contrasena" required>
-                    <label>Contraseña</label>
-                </div>
-                <div class="registroInfo">
-                    <input type="password" name="confirmarContrasena" required>
-                    <label>Confirmar contraseña</label>
-                </div>
-                <input type="submit" value="Registrarse como empleado">
-                <div class="iniciarSesion">
-                    ¿Ya eres empleado? <a href="#" onclick="mostrarFormulario('formLogin')">Inicia sesión aquí</a>
-                    <h2>Holis2</h2>
-                </div>
-            </form>
+<div id="formEmpleado" style="display: none;">
+    <h1>Registro de Empleados</h1>
+    <form method="post">
+        <div class="registroInfo">
+            <input type="text" id="nombreCompleto" name="nombreCompleto" required>
+            <label>Nombre completo</label>
         </div>
-    </div>
+        <!-- Botón para generar el correo -->
+        <button type="submit" id="generateEmailButton">Generar Correo</button>
+        
+        <!-- el correo se genera con el boton de arriba -->
+        <div class="registroInfo">
+            <input type="email" id="correoElectronico" name="correoElectronico" required readonly>
+            <label>Correo electrónico corporativo</label>
+        </div>
+
+        <div class="registroInfo">
+            <input type="number" name="numeroTelefono" required inputmode="tel">
+            <label>Número de teléfono</label>
+        </div>
+        <div class="registroInfo">
+            <input type="text" name="puestoTrabajo" required>
+            <label>Puesto de trabajo</label>
+        </div>
+        <div class="registroInfo">
+            <input type="password" name="contrasena" required>
+            <label>Contraseña</label>
+        </div>
+        <div class="registroInfo">
+            <input type="password" name="confirmarContrasena" required>
+            <label>Confirmar contraseña</label>
+        </div>
+        <input type="submit" value="Registrarse como empleado">
+        <div class="iniciarSesion">
+            ¿Ya eres empleado? <a href="#" onclick="mostrarFormulario('formLogin')">Inicia sesión aquí</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('generateEmailButton').addEventListener('click', function() {
+    // Obtener los valores del formulario
+    const nombreCompleto = document.getElementById('nombreCompleto').value;
+    const dominio = 'gpcorp.WidgetHub.com';
+    
+    // Si el campo nombre está lleno
+    if (nombreCompleto) {
+        // Generar el correo en formato: nombrecompleto@gpcorp.WidgetHub.com
+        const nombreFormateado = nombreCompleto.toLowerCase().replace(/ /g, '');
+        const correoGenerado = `${nombreFormateado}@${dominio}`;
+        
+        // Colocar el correo generado en el campo de correo electrónico
+        const correoInput = document.getElementById('correoElectronico');
+        correoInput.value = correoGenerado;
+
+        // Mover el label del correo hacia arriba
+        const correoLabel = correoInput.nextElementSibling; // Obtener el label asociado
+        correoLabel.style.top = '-5px'; // Ajustar la posición del label
+        correoLabel.style.color = '#323750'; // Cambiar el color del label
+    } else {
+        alert('Por favor ingrese el nombre completo para generar el correo.');
+    }
+});
+</script>
     <script>
         function mostrarFormulario(formulario) {
             document.getElementById('formLogin').style.display = 'none';

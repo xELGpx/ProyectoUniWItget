@@ -497,14 +497,15 @@ header{
 }
 
 /*login*/
-.BodyLogin{
+.BodyLogin {
     margin: 0;
     padding: 0;
-    font-family:'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background: linear-gradient(150deg, rgb(39, 153, 153), #50085a);
     height: 100vh;
 }
-.formulario{
+
+.formulario {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -513,22 +514,25 @@ header{
     background: #fdfdfd;
     border-radius: 10px;
 }
-.formulario h1{
+
+.formulario h1 {
     text-align: center;
     padding: 0 0 20px 0;
     border-bottom: 1px solid silver;
 }
-.formulario{
+
+.formulario {
     padding: 0 40px;
     box-sizing: border-box;
 }
-form .registroInfo{
+
+form .registroInfo {
     position: relative;
     border-bottom: 2px solid #adadad;
     margin: 30px 0;
 }
 
-.registroInfo input{
+.registroInfo input {
     width: 100%;
     padding: 0 5px;
     height: 40px;
@@ -537,7 +541,8 @@ form .registroInfo{
     background: none;
     outline: none;
 }
-.registroInfo label{
+
+.registroInfo label {
     position: absolute;
     top: 50%;
     left: 5px;
@@ -547,7 +552,15 @@ form .registroInfo{
     pointer-events: none;
     transition: .5s;
 }
-.registroInfo span::before{
+
+/* Mover el label si el campo tiene foco o contenido */
+.registroInfo input:focus ~ label,
+.registroInfo input:valid ~ label {
+    top: -5px;
+    color: #323750;
+}
+
+.registroInfo span::before {
     content: '';
     position: absolute;
     top: 40px;
@@ -557,25 +570,22 @@ form .registroInfo{
     background: #323750;
     transition: .5s;
 }
-.registroInfo input:focus ~ label,
-.registroInfo input:focus ~ label{
-    top: -5px;
-    color:#323750 ;
-    
-}
-.registroInfo input:focus ~ span::before,
-.registroInfo input:focus ~ span::before{
+
+.registroInfo input:focus ~ span::before {
     width: 100%;
 }
-.recordar{
+
+.recordar {
     margin: -5px 0 20px 5px;
     color: blue;
     cursor: pointer;
 }
-.recordar:hover{
+
+.recordar:hover {
     text-decoration: underline;
 }
-input[type="submit"]{
+
+input[type="submit"] {
     width: 100%;
     height: 50px;
     border: 1px solid;
@@ -587,25 +597,43 @@ input[type="submit"]{
     outline: none;
 }
 
-input [type="submit"]:hover{
+input[type="submit"]:hover {
     border-color: purple;
     transition: .5s;
 }
 
-.registrarse{
+.registrarse {
     margin: 30px 0;
     text-align: center;
     font-size: 16px;
     color: black;
 }
-.registrarse a{
+
+.registrarse a {
     color: blue;
     text-decoration: none;
 }
-.registrarse a:hover{
+
+.registrarse a:hover {
     text-decoration: underline;
 }
-/* menu de usuario */
+#generateEmailButton {
+    width: 100%;
+    height: 50px;
+    border: 5px solid;
+    background: #869fe2;
+    border-radius: 10px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+    outline: none; /* Sin borde de enfoque */
+}
+
+#generateEmailButton:hover {
+    background-color: rgb(90, 145, 177); /* Color de borde al pasar el ratón */
+    transition: .5s; /* Transición suave */
+}
+
 /* menu de usuario */
 #perfilUsuario {
     display: none;
