@@ -50,8 +50,6 @@ document.getElementById('formRegistro').addEventListener('submit', async (event)
         });
 });
 
-//
-
 document.getElementById('formLogin').addEventListener("submit", async (event) => {
     event.preventDefault();
     const email = document.getElementById('loginEmail').value;
