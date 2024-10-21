@@ -1,11 +1,15 @@
+let user = '';
 
-document.getElementById('fillDataButton').addEventListener('click', function () {
-    document.getElementById('name').value = 'John Doe';
-    document.getElementById('email').value = 'john@example.com';
-    document.getElementById('phone').value = '1234567890';
-    document.getElementById('address').value = '123 Main St';
-    document.getElementById('password').value = '123'
-});
+localStorage.setItem('isAuthenticated', 'false');
+
+
+function mostrarFormulario(formulario) {
+    document.getElementById('formLogin').style.display = 'none';
+    document.getElementById('formRegistro').style.display = 'none';
+    document.getElementById('formEmpleado').style.display = 'none';
+    document.getElementById(formulario).style.display = 'block';
+}
+
 document.getElementById('formRegistro').addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -22,11 +26,10 @@ document.getElementById('formRegistro').addEventListener('submit', async (event)
         email: email,
         phone: phone,
         address: address,
-        password: password,
-        confirmPasword: confirmPasword
+        password: password
     };
 
-    if (clientData.password !== clientData.confirmPasword) {
+    if (clientData.password !== confirmPasword) {
         alert('Las contraseñas no coinciden');
         return;
     }
@@ -42,6 +45,7 @@ document.getElementById('formRegistro').addEventListener('submit', async (event)
             if (response.ok) {
                 alert('Registro exitoso');
                 window.location.href = 'Login.html';
+
             } else {
                 alert('Error al registrar, inténtalo de nuevo');
             }
@@ -53,18 +57,19 @@ document.getElementById('formRegistro').addEventListener('submit', async (event)
 });
 
 //
-let user = '';
-let isAuthenticated = false;
+
 document.getElementById('formLogin').addEventListener("submit", async (event) => {
     event.preventDefault();
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
-
     try {
         const result = await login(email, password);
         if (result.ok) {
-            console.log("Login successful", result.data);
+            localStorage.setItem('isAuthenticated', 'true');
             alert("Login exitoso");
+            window.location.href = 'Index.html';
+
+
         } else {
             alert(result.message || 'Error en la autenticación');
         }
@@ -92,4 +97,5 @@ const login = async (email, password) => {
     const data = await response.json();
     return { ok: true, data };
 };
+
 
