@@ -696,3 +696,14 @@ input[type="checkbox"] {
 .perfil-Buton:hover, .perfil-Buton1:hover {
     background-color: #0056b3;
 }
+
+.purchase-menu {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    position: absolute;
+    top: 50px; /* Ajusta según sea necesario */
+    left: 50%; /* Centrado */
+    transform: translateX(-50%);
+    z-index: 100; /* Asegúrate de que esté encima de otros elementos */
+}

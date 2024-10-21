@@ -37,7 +37,7 @@
                 <input type="checkbox" onclick="mostrarOcultar('contrasena')"> Mostrar contraseña
         
                 <p>Numero de telefono</p>
-        
+        asd
                 <div class="UsuarioLevel">
                     <p>Cliente | Asociado</p>
                     <div class="EmpleadoLevel">
@@ -640,6 +640,23 @@
 
         </div>
     </main>
+
+    <div class="purchase-menu" id="purchaseMenu" style="display: none;">
+        <h2>Menu de Compra</h2>
+        <div>
+            <label for="paymentMethod">Método de Pago:</label>
+            <select id="paymentMethod">
+                <option value="creditCard">Tarjeta de Crédito</option>
+                <option value="paypal">PayPal</option>
+                <option value="cash">Efectivo</option>
+            </select>
+        </div>
+        <div>
+            <label for="quantity">Cantidad:</label>
+            <input type="number" id="quantity" value="1" min="1">
+        </div>
+        <button id="confirmPurchase">Confirmar Compra</button>
+    </div>
 
     <section class="info">
         <div class="info-content container">
