@@ -643,7 +643,7 @@ input[type="submit"]:hover {
     top: 100px;
     right: 20px;
     width: 300px;
-    background-color: #fff;
+    background: linear-gradient(150deg, rgb(39, 153, 153), #bbefff);
     text-align: center;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -710,19 +710,15 @@ input[type="checkbox"] {
     margin-top: 10px;
 }
 
-.perfil-Buton, .perfil-Buton1 {
+.perfil-Buton, .perfil-Buton1, .perfil-Buton2 {
     padding: 10px 15px;
-    background-color: #007bff;
+    background: linear-gradient(150deg, rgb(153, 137, 207), #043a4b);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     flex: 1;
     margin: 5px;
-}
-
-.perfil-Buton:hover, .perfil-Buton1:hover {
-    background-color: #0056b3;
 }
 
 .purchase-menu {
