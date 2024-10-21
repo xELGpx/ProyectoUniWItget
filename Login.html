@@ -5,80 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formularios</title>
     <link rel="stylesheet" href="Style.css">
-    <script>
-        function mostrarFormulario(formulario) {
-            document.getElementById('formLogin').style.display = 'none';
-            document.getElementById('formRegistro').style.display = 'none';
-            document.getElementById('formEmpleado').style.display = 'none';
-
-            document.getElementById(formulario).style.display = 'block';
-        }
-
-        // Capturar el evento de envío del formulario de inicio de sesión
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('loginForm').addEventListener('submit', function(event) {
-                event.preventDefault(); // Evitar el envío del formulario
-
-                // Aquí podrías agregar validación adicional si es necesario
-                
-                // Redirigir a otra página después de "iniciar sesión"
-                window.location.href = 'dashboard.html'; // Cambia 'dashboard.html' por la página de destino
-            });
-        });
-    </script>
 </head>
 <body class="BodyLogin">
     <div class="formulario">
 
-        <!-- Formulario de Inicio de Sesión -->
-        <div id="formLogin" style="display: block;">
-            <h1>Inicio de sesión</h1>
-            <form id="loginForm">
-                <div class="registroInfo">
-                    <input type="text" id="username" required>
-                    <label>Nombre de usuario</label>
-                </div>
-                <div class="registroInfo">
-                    <input type="password" id="password" required>
-                    <label>Contraseña</label>
-                </div>
-                <div class="recordar">¿Olvidó su contraseña?</div>
-                <input type="submit" value="Iniciar">
-                <div class="registrarse">
-                    ¿No tienes cuenta? <a href="#" onclick="mostrarFormulario('formRegistro')">Regístrate aquí</a>
-                </div>
-                <div class="registrarse">
-                    ¿Eres empleado? <a href="#" onclick="mostrarFormulario('formEmpleado')">Regístrate como empleado</a>
-                </div>
-            </form>
-        </div>
+       <!-- Formulario de Inicio de Sesión -->
+       <div id="formLogin" style="display: block;">
+        <h1>Inicio de sesión</h1>
+        <form method="post">
+            <div class="registroInfo">
+                <input type="text" id="loginEmail" required name="email">
+                <label>Email</label>
+            </div>
+            <div class="registroInfo">
+                <input type="password" id="loginPassword" required name="password">
+                <label>Password</label>
+            </div>
+            <div class="recordar">¿Olvidó su contraseña?</div>
+            <input type="submit" value="Iniciar">
+            <div class="registrarse">
+                ¿No tienes cuenta? <a href="#" onclick="mostrarFormulario('formRegistro')">Regístrate aquí</a>
+            </div>
+            <div class="registrarse">
+                ¿Solicitud de empleo? <a href="#" onclick="mostrarFormulario('formEmpleado')">Regístrate como empleado</a>
+            </div>
+        </form>
+    </div>
 
         <!-- Formulario de Registro de Usuarios -->
         <div id="formRegistro" style="display: none;">
-            <h1>Registro de Usuarios</h1>
+            <h1>Registro de Clientes</h1>
             <form method="post">
                 <div class="registroInfo">
-                    <input type="text" required>
+                    <input type="text" id="name" name="nombreUsuario" required>
                     <label>Nombre de usuario</label>
                 </div>
                 <div class="registroInfo">
-                    <input type="email" required>
+                    <input type="email" id="email" name="correoElectronico" required>
                     <label>Correo electrónico</label>
                 </div>
                 <div class="registroInfo">
-                    <input type="number" required inputmode="tel">
+                    <input type="number" id="phone" name="numeroTelefono" required inputmode="tel">
                     <label>Número de teléfono</label>
                 </div>
                 <div class="registroInfo">
-                    <input type="text" required>
+                    <input type="text" id="address" name="domicilio" required>
                     <label>Domicilio</label>
                 </div>
                 <div class="registroInfo">
-                    <input type="password" required>
+                    <input type="password" id="password" name="contrasena" required>
                     <label>Contraseña</label>
                 </div>
                 <div class="registroInfo">
-                    <input type="password" required>
+                    <input type="password" id="confirmPasword" name="confirmarContrasena" required>
                     <label>Confirmar contraseña</label>
                 </div>
                 <input type="submit" value="Registrarse">
@@ -93,27 +72,29 @@
             <h1>Registro de Empleados</h1>
             <form method="post">
                 <div class="registroInfo">
-                    <input type="text" required>
+                    <input type="text" name="nombreCompleto" required>
                     <label>Nombre completo</label>
                 </div>
+                <button type="button" id="generateEmailButton">Generar Correo</button>
+                <p id="generatedEmail"></p>
                 <div class="registroInfo">
-                    <input type="email" required>
+                    <input type="email" name="correoElectronico" required>
                     <label>Correo electrónico corporativo</label>
                 </div>
                 <div class="registroInfo">
-                    <input type="number" required inputmode="tel">
+                    <input type="number" name="numeroTelefono" required inputmode="tel">
                     <label>Número de teléfono</label>
                 </div>
                 <div class="registroInfo">
-                    <input type="text" required>
+                    <input type="text" name="puestoTrabajo" required>
                     <label>Puesto de trabajo</label>
                 </div>
                 <div class="registroInfo">
-                    <input type="password" required>
+                    <input type="password" name="contrasena" required>
                     <label>Contraseña</label>
                 </div>
                 <div class="registroInfo">
-                    <input type="password" required>
+                    <input type="password" name="confirmarContrasena" required>
                     <label>Confirmar contraseña</label>
                 </div>
                 <input type="submit" value="Registrarse como empleado">
@@ -122,7 +103,15 @@
                 </div>
             </form>
         </div>
-
     </div>
+    <script>
+        function mostrarFormulario(formulario) {
+            document.getElementById('formLogin').style.display = 'none';
+            document.getElementById('formRegistro').style.display = 'none';
+            document.getElementById('formEmpleado').style.display = 'none';
+            document.getElementById(formulario).style.display = 'block';
+        }
+    </script>
+     <script type="module" src="./scripts/fromHandle.js" defer></script>
 </body>
 </html>
