@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const loginNavBar = document.getElementById('login');
     const profileNavBar = document.getElementById('profile');
-
+    //
+    localStorage.setItem('isAuthenticated', 'false');
     function updateNavBar() {
         const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
         loginNavBar.style.display = isAuthenticated ? 'none' : 'block';
@@ -12,10 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.onload = updateNavBar();
 
 });
-document.addEventListener("DOMContentLoaded", function () {
-    // Este código se ejecutará una vez que el HTML haya sido completamente cargado.
-    console.log('El DOM ha sido cargado completamente.');
-});
+
 
 
 function E(selector, parent) {

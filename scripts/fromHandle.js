@@ -3,12 +3,6 @@ let user = '';
 localStorage.setItem('isAuthenticated', 'false');
 
 
-function mostrarFormulario(formulario) {
-    document.getElementById('formLogin').style.display = 'none';
-    document.getElementById('formRegistro').style.display = 'none';
-    document.getElementById('formEmpleado').style.display = 'none';
-    document.getElementById(formulario).style.display = 'block';
-}
 
 document.getElementById('formRegistro').addEventListener('submit', async (event) => {
     event.preventDefault();

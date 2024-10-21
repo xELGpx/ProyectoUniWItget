@@ -61,7 +61,6 @@
                     <label>Confirmar contraseña</label>
                 </div>
                 <input type="submit" value="Registrarse">
-                <button type="button" id="fillDataButton">Llenar Datos Automáticamente</button>
                 <div class="iniciarSesion">
                     ¿Ya tienes cuenta? <a href="#" onclick="mostrarFormulario('formLogin')">Inicia sesión aquí</a>
                 </div>
@@ -103,6 +102,14 @@
             </form>
         </div>
     </div>
+    <script>
+        function mostrarFormulario(formulario) {
+            document.getElementById('formLogin').style.display = 'none';
+            document.getElementById('formRegistro').style.display = 'none';
+            document.getElementById('formEmpleado').style.display = 'none';
+            document.getElementById(formulario).style.display = 'block';
+        }
+    </script>
      <script type="module" src="./scripts/fromHandle.js" defer></script>
 </body>
 </html>
