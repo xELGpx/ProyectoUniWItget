@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginNavBar = document.getElementById('login');
     const profileNavBar = document.getElementById('profile');
     //
-    localStorage.setItem('isAuthenticated', 'false');
+    localStorage.setItem('isAuthenticated', 'true');
     function updateNavBar() {
         const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
         loginNavBar.style.display = isAuthenticated ? 'none' : 'block';
