@@ -730,3 +730,82 @@ input[type="checkbox"] {
     transform: translateX(-50%);
     z-index: 100; /* Asegúrate de que esté encima de otros elementos */
 }
+/*Sucripcion boletines*/
+.BodySucripcion{
+    background: linear-gradient(150deg, rgb(8, 1, 32), #102836);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.box{
+    background: linear-gradient(150deg, rgb(16, 189, 241), #044640);
+    border-radius: 20px ;
+    box-shadow: 0 7px 8px rgba(0,0 ,0, 0.3);
+    padding: 50px;
+    text-align: center;
+    max-width: 500px;
+}
+.box h2{
+    margin: 10px 0 0;
+    color: #fdfdfd;
+}
+.box img{
+    max-width: 100%;
+    width: 250px;
+}
+.box p {
+    color: #000000;
+    margin: 10px;
+}
+.form {
+    position: relative;
+    margin: 30px 0 20px;
+}
+.box .input_Boletin {
+    background-color: white;
+    border: 0;
+    border-radius: 50px;
+    box-shadow: 0 7px 8px rgba(0, 0, 0, 0.3);
+    display: block;
+    font-size: 1.1rem;
+    height: 42px;
+    padding: 12px 25px;
+    width: 100%; /* Asegúrate de que sea 100% */
+}
+.btn{
+    border: 0;
+    border-radius: 0px 50px 50px 0px;
+    background: linear-gradient(150deg, rgb(163, 129, 243), #c20c0c);
+    height: 42px;
+    padding: 12px 12px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+}
+.input:focus, .btn:focus{
+    outline: 0;
+}
+.btn:hover{
+    background: linear-gradient(150deg, rgb(192, 168, 248), #fa4242);
+    cursor: pointer;
+
+}
+.Regresar_Principal {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.Regresar_Principal:hover {
+    border: 1px solid #0fe6db;
+    color: #2dceff;
+}
