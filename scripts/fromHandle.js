@@ -1,6 +1,6 @@
 let user = '';
 
-localStorage.setItem('isAuthenticated', 'false');
+localStorage.setItem('isAuthenticated', 'true');
 
 
 
