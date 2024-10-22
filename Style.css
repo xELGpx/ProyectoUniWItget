@@ -8,7 +8,7 @@
 }
 body{
     font-family:'Poppins', sans-serif;
-    background-color: #101116;
+    background: linear-gradient(90deg, #0e0230 0%, #106574 100%);
 }
 
 header{
