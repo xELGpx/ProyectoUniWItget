@@ -809,3 +809,33 @@ input[type="checkbox"] {
     border: 1px solid #0fe6db;
     color: #2dceff;
 }
+/*Pagina secundaria*/
+.BodySecundaria {
+    background: linear-gradient(150deg, rgb(8, 1, 32), #102836);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.box {
+    background: linear-gradient(150deg, rgb(16, 189, 241), #044640);
+    border-radius: 20px;
+    box-shadow: 0 7px 8px rgba(0, 0, 0, 0.3);
+    padding: 50px;
+    text-align: center;
+    width: 100%;
+    max-width: 800px; /* Ajusta el tamaño máximo según necesites */
+}
+
+.Map {
+    display: flex;
+    justify-content: center; /* Centra el mapa horizontalmente */
+}
+
+iframe {
+    width: 100%; /* Haz que el iframe ocupe el ancho completo del contenedor */
+    height: 450px;
+    border: none;
+}
