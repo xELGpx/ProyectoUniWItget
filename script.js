@@ -1,6 +1,71 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Cargar el contenido de navbar.html dentro del div con id "navbar"
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+        });
     const loginNavBar = document.getElementById('login');
     const profileNavBar = document.getElementById('profile');
+    const buyButtons = document.querySelectorAll('.box-1 .buy, .box-2 .buy, .box-3 .buy');
+    const productList = document.getElementById('productList');
+    const totalPriceElement = document.getElementById('totalPrice');
+    let totalPrice = 0;
+    // Función para actualizar localStorage
+    function saveCartToLocalStorage() {
+        const products = Array.from(productList.children).map(item => ({
+            name: item.dataset.productName,
+            quantity: parseInt(item.dataset.quantity)
+        }));
+        localStorage.setItem('cartProducts', JSON.stringify(products));
+        localStorage.setItem('totalPrice', totalPrice.toFixed(2));
+    }
+    // Función para cargar productos desde localStorage
+    function loadCartFromLocalStorage() {
+        const savedProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
+        totalPrice = parseFloat(localStorage.getItem('totalPrice')) || 0;
+        totalPriceElement.textContent = totalPrice.toFixed(2);
+
+        savedProducts.forEach(product => {
+            const listItem = document.createElement('li');
+            listItem.dataset.productName = product.name;
+            listItem.dataset.quantity = product.quantity;
+            listItem.textContent = `${product.name} x${product.quantity}`;
+            productList.appendChild(listItem);
+        });
+    }
+    // Cargar el carrito al iniciar la página
+    loadCartFromLocalStorage();
+
+    buyButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const box = this.closest('.box-1, .box-2, .box-3');
+            const productName = box.querySelector('h3').textContent;
+            const productPrice = parseFloat(box.querySelector('.price').textContent.replace('$', ''));
+            const existingProduct = Array.from(productList.children).find(
+                item => item.dataset.productName === productName
+            );
+
+            if (existingProduct) {
+                let quantity = parseInt(existingProduct.dataset.quantity) + 1;
+                existingProduct.dataset.quantity = quantity;
+                existingProduct.textContent = `${productName} x${quantity}`;
+            } else {
+                const listItem = document.createElement('li');
+                listItem.dataset.productName = productName;
+                listItem.dataset.quantity = 1;
+                listItem.textContent = `${productName} x1`;
+                productList.appendChild(listItem);
+            }
+
+            // Sumar precio y actualizar el total
+            totalPrice += productPrice;
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+
+            // Guardar el estado del carrito en localStorage
+            saveCartToLocalStorage();
+        });
+    });
     //
     localStorage.setItem('isAuthenticated', 'true');
     function updateNavBar() {
@@ -11,9 +76,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.onload = updateNavBar();
+    buyButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const box = this.closest('.box-1, .box-2, .box-3');
+            const productName = box.querySelector('h3').textContent;
+            const productPrice = parseFloat(box.querySelector('.price').textContent.replace('$', ''));
+            const existingProduct = Array.from(productList.children).find(
+                item => item.dataset.productName === productName
+            );
+
+            if (existingProduct) {
+                // Si el producto ya está en la lista, incrementa la cantidad
+                let quantity = parseInt(existingProduct.dataset.quantity) + 1;
+                existingProduct.dataset.quantity = quantity;
+                existingProduct.textContent = `${productName} x${quantity}`;
+            } else {
+                // Si el producto no está en la lista, crea un nuevo elemento de lista
+                const listItem = document.createElement('li');
+                listItem.dataset.productName = productName;
+                listItem.dataset.quantity = 1;
+                listItem.textContent = `${productName} x1`;
+                productList.appendChild(listItem);
+            }
+
+            // Suma el precio del producto al total
+            totalPrice += productPrice;
+            totalPriceElement.textContent = totalPrice.toFixed(2); // Muestra el total con dos decimales
+        });
+    });
 
 });
-
 
 
 function E(selector, parent) {
@@ -107,27 +199,3 @@ document.getElementById('mostrarPerfil').onclick = function () {
     }
 }
 
-document.querySelectorAll('.buy').forEach(item => {
-    item.addEventListener('click', (event) => {
-        // Muestra el menú de compra
-        document.getElementById('purchaseMenu').style.display = 'block';
-        
-        // Obtiene la información del producto (puedes personalizar esto según tu estructura)
-        const productCard = item.closest('.box-1');
-        const productName = productCard.querySelector('h3').innerText;
-        const productPrice = productCard.querySelector('.price').innerText;
-        
-        // Muestra información del producto en el menú de compra (opcional)
-        alert(`Has seleccionado: ${productName}\nPrecio: ${productPrice}`);
-    });
-});
-
-// Lógica para confirmar la compra (opcional)
-document.getElementById('confirmPurchase').addEventListener('click', () => {
-    const paymentMethod = document.getElementById('paymentMethod').value;
-    const quantity = document.getElementById('quantity').value;
-    
-    alert(`Compra confirmada!\nMétodo de Pago: ${paymentMethod}\nCantidad: ${quantity}`);
-    
-    // Aquí puedes añadir lógica para procesar el pago o guardar la compra
-});
