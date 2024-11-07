@@ -67,6 +67,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
     //
+    clearCartButton.addEventListener('click', function () {
+        // Limpia el contenido de la lista de productos y el total
+        productList.innerHTML = '';
+        totalPrice = 0;
+        totalPriceElement.textContent = '0.00';
+
+        // Elimina los datos de localStorage
+        localStorage.removeItem('cartProducts');
+        localStorage.removeItem('totalPrice');
+    });
     localStorage.setItem('isAuthenticated', 'true');
     function updateNavBar() {
         const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
@@ -84,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const existingProduct = Array.from(productList.children).find(
                 item => item.dataset.productName === productName
             );
-
             if (existingProduct) {
                 // Si el producto ya está en la lista, incrementa la cantidad
                 let quantity = parseInt(existingProduct.dataset.quantity) + 1;
@@ -186,7 +195,6 @@ loadMoreBtn3.onclick = () => {
         loadMoreBtn3.style.display = 'none'
     }
 }
-//tucan abajo es el boton :)                   joto
 
 document.getElementById('mostrarPerfil').onclick = function () {
     var perfil = document.getElementById('perfilUsuario');
