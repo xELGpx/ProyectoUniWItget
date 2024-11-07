@@ -5,12 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             document.getElementById('navbar').innerHTML = data;
         });
+
     const loginNavBar = document.getElementById('login');
     const profileNavBar = document.getElementById('profile');
     const buyButtons = document.querySelectorAll('.box-1 .buy, .box-2 .buy, .box-3 .buy');
     const productList = document.getElementById('productList');
     const totalPriceElement = document.getElementById('totalPrice');
+    const clearCartButton = document.getElementById('clearCartButton');
     let totalPrice = 0;
+
     // Función para actualizar localStorage
     function saveCartToLocalStorage() {
         const products = Array.from(productList.children).map(item => ({
@@ -20,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem('cartProducts', JSON.stringify(products));
         localStorage.setItem('totalPrice', totalPrice.toFixed(2));
     }
+
     // Función para cargar productos desde localStorage
     function loadCartFromLocalStorage() {
         const savedProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
@@ -34,9 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
             productList.appendChild(listItem);
         });
     }
+
     // Cargar el carrito al iniciar la página
     loadCartFromLocalStorage();
 
+    // Configurar los botones de compra
     buyButtons.forEach(button => {
         button.addEventListener('click', function () {
             const box = this.closest('.box-1, .box-2, .box-3');
@@ -47,10 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             if (existingProduct) {
+                // Si el producto ya está en la lista, incrementa la cantidad
                 let quantity = parseInt(existingProduct.dataset.quantity) + 1;
                 existingProduct.dataset.quantity = quantity;
                 existingProduct.textContent = `${productName} x${quantity}`;
             } else {
+                // Si el producto no está en la lista, crea un nuevo elemento de lista
                 const listItem = document.createElement('li');
                 listItem.dataset.productName = productName;
                 listItem.dataset.quantity = 1;
@@ -66,7 +74,8 @@ document.addEventListener("DOMContentLoaded", () => {
             saveCartToLocalStorage();
         });
     });
-    //
+
+    // Botón para limpiar el carrito
     clearCartButton.addEventListener('click', function () {
         // Limpia el contenido de la lista de productos y el total
         productList.innerHTML = '';
@@ -77,43 +86,18 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.removeItem('cartProducts');
         localStorage.removeItem('totalPrice');
     });
+
+    // Configuración de la barra de navegación según el estado de autenticación
     localStorage.setItem('isAuthenticated', 'true');
     function updateNavBar() {
         const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
         loginNavBar.style.display = isAuthenticated ? 'none' : 'block';
         profileNavBar.style.display = isAuthenticated ? 'block' : 'none';
-        console.log(isAuthenticated)
+        console.log(isAuthenticated);
     }
 
-    window.onload = updateNavBar();
-    buyButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const box = this.closest('.box-1, .box-2, .box-3');
-            const productName = box.querySelector('h3').textContent;
-            const productPrice = parseFloat(box.querySelector('.price').textContent.replace('$', ''));
-            const existingProduct = Array.from(productList.children).find(
-                item => item.dataset.productName === productName
-            );
-            if (existingProduct) {
-                // Si el producto ya está en la lista, incrementa la cantidad
-                let quantity = parseInt(existingProduct.dataset.quantity) + 1;
-                existingProduct.dataset.quantity = quantity;
-                existingProduct.textContent = `${productName} x${quantity}`;
-            } else {
-                // Si el producto no está en la lista, crea un nuevo elemento de lista
-                const listItem = document.createElement('li');
-                listItem.dataset.productName = productName;
-                listItem.dataset.quantity = 1;
-                listItem.textContent = `${productName} x1`;
-                productList.appendChild(listItem);
-            }
-
-            // Suma el precio del producto al total
-            totalPrice += productPrice;
-            totalPriceElement.textContent = totalPrice.toFixed(2); // Muestra el total con dos decimales
-        });
-    });
-
+    // Actualizar la barra de navegación al cargar la página
+    updateNavBar();
 });
 
 
