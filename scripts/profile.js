@@ -13,8 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
         profileNavBar.style.display = token ? 'block' : 'none';
         console.log(token);
     }
-
-
     const getUserProfile = async () => {
         try {
             const response = await fetch('http://localhost:5500/user/auth/profile', {
@@ -27,10 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!response.ok) {
                 throw new Error('Error al obtener el perfil');
             }
-
             const data = await response.json();
             console.log(data)
-
             correo.value = data.Email || '';
             userNumber.value = data.Phone;    // Asume que el perfil tiene un campo 'correo'
             contrasena.value = data.Password || '';
