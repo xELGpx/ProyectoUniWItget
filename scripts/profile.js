@@ -49,6 +49,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
         window.location.href = '/login.html';
     });
+    document.getElementById('deleteButton').addEventListener('click', async (clientId) => {
+        try {
+            const response = await fetch(`http://localhost:5500/user/auth/deleteStudent/`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                alert(result.message);
+                localStorage.removeItem('token');
+                window.location.href = '/login.html';
+            } else if (response.status === 404) {
+                const result = await response.json();
+                alert(result.message);
+            } else {
+                throw new Error('Error al eliminar el cliente');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Hubo un problema al intentar eliminar el cliente');
+        }
+    })
     getUserProfile();
     updateNavBar();
 });
