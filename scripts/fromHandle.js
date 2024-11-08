@@ -1,13 +1,9 @@
 let user = '';
 
-localStorage.setItem('isAuthenticated', 'true');
-
 
 
 document.getElementById('formRegistro').addEventListener('submit', async (event) => {
     event.preventDefault();
-
-
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
@@ -28,7 +24,7 @@ document.getElementById('formRegistro').addEventListener('submit', async (event)
         return;
     }
     console.log(clientData);
-    await fetch('http://localhost:8080/user', {
+    await fetch('http://localhost:5500/user/createClient', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -57,7 +53,6 @@ document.getElementById('formLogin').addEventListener("submit", async (event) =>
     try {
         const result = await login(email, password);
         if (result.ok) {
-            localStorage.setItem('isAuthenticated', 'true');
             alert("Login exitoso");
             window.location.href = 'Index.html';
 
@@ -72,7 +67,7 @@ document.getElementById('formLogin').addEventListener("submit", async (event) =>
 });
 
 const login = async (email, password) => {
-    const response = await fetch(`http://localhost:8080/user/login`, {
+    const response = await fetch(`http://localhost:5500/user/auth`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -87,6 +82,8 @@ const login = async (email, password) => {
     }
 
     const data = await response.json();
+    localStorage.setItem('token', data.token);
+    console.log(localStorage.getItem('token'))
     return { ok: true, data };
 };
 

@@ -88,16 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Configuración de la barra de navegación según el estado de autenticación
-    localStorage.setItem('isAuthenticated', 'true');
-    function updateNavBar() {
-        const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-        loginNavBar.style.display = isAuthenticated ? 'none' : 'block';
-        profileNavBar.style.display = isAuthenticated ? 'block' : 'none';
-        console.log(isAuthenticated);
-    }
+
 
     // Actualizar la barra de navegación al cargar la página
-    updateNavBar();
+
 });
 
 

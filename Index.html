@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,27 +26,26 @@
             </nav>
         </div>
         <!-------------------------------------------------Perfil del Usuario--------------------------------------------------------------->
-
         <div class="userPerfil" id="perfilUsuario">
             <div class="container">
                 <img src="/images/hoja - Copy.png" alt="user" class="user">
-                <p>Nombre de Usuario</p>
-        
+                <p id="userName">Nombre de Usuario</p>
+                <input type="text" id="usuariopro" value="correo@ejemplo.com" readonly>
                 <input type="password" id="correo" value="correo@ejemplo.com" readonly>
                 <input type="checkbox" onclick="mostrarOcultar('correo')"> Mostrar correo
                 <input type="password" id="contrasena" value="contraseñaEjemplo" readonly>
                 <input type="checkbox" onclick="mostrarOcultar('contrasena')"> Mostrar contraseña
         
                 <p>Numero de telefono</p>
+                <input type="text" id="userNumber" value="Anonimo" readonly>
                 <div class="UsuarioLevel">
                     <p>Cliente | Asociado</p>
                     <div class="EmpleadoLevel">
                         <p>Puesto1</p>
                     </div>
                 </div>
-        
                 <div class="butonInPerfil">
-                    <button ti class="perfil-Buton">Cerrar sesión</button>
+                    <button id="logoutButton" class="perfil-Buton">Cerrar sesión</button>
                     <button class="perfil-Buton1">Solicitar Empleo</button>
                     <button class="perfil-Buton2">Borrar cuenta</button>
                 </div>
@@ -765,7 +763,8 @@
     </footer>
     <script type="module" src="./scripts/fromHandle.js" defer></script>
     <script type="module" src="script.js" defer></script>
-    
+    <script type="module" src="./scripts/profile.js" defer></script>
+
 </body>
 
 </html>
